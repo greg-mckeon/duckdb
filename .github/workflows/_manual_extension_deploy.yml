@@ -73,7 +73,7 @@ jobs:
           cat "$GITHUB_OUTPUT"
 
   vars:
-    runs-on: ubuntu-24.04
+    runs-on: namespace-profile-test
     outputs:
       BRANCHES_TO_BE_CACHED: ${{ env.BRANCHES_TO_BE_CACHED }}
     steps:

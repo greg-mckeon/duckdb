@@ -24,7 +24,7 @@ env:
 jobs:
   linux-configs-all:
     name: Run all tests with different configurations
-    runs-on: ubuntu-24.04
+    runs-on: namespace-profile-test
     strategy:
       fail-fast: false
       matrix:

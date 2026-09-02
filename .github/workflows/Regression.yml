@@ -131,7 +131,7 @@ jobs:
     name: Bench ${{ matrix.name }}
     needs:
       - linux-base
-    runs-on: ubuntu-24.04
+    runs-on: namespace-profile-test
     container:
       image: ${{ fromJson(inputs.images).manylinux_amd64_main }}
     strategy:
@@ -277,7 +277,7 @@ jobs:
     if: ${{ github.repository == 'duckdb/duckdb' && github.ref_name == 'main' }}
     needs:
       - linux-base
-    runs-on: ubuntu-24.04
+    runs-on: namespace-profile-test
     container:
       image: ${{ fromJson(inputs.images).manylinux_amd64_main }}
 
@@ -325,7 +325,7 @@ jobs:
     name: Storage Size Regression Test
     needs:
       - linux-base
-    runs-on: ubuntu-24.04
+    runs-on: namespace-profile-test
     container:
       image: ${{ fromJson(inputs.images).manylinux_amd64_main }}
 
@@ -407,7 +407,7 @@ jobs:
     name: Regression Test Join Order Plan Cost
     needs:
       - linux-base
-    runs-on: ubuntu-24.04
+    runs-on: namespace-profile-test
     container:
       image: ${{ fromJson(inputs.images).manylinux_amd64_main }}
 

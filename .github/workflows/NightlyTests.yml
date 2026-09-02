@@ -31,7 +31,7 @@ jobs:
   check-draft:
     # We run all other jobs on PRs only if they are not draft PR
     if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
-    runs-on: ubuntu-24.04
+    runs-on: namespace-profile-test
     steps:
       - name: Preliminary checks on CI
         run: echo "Event name is ${{ github.event_name }}"
@@ -78,7 +78,7 @@ jobs:
   linux-memory-leaks:
      name: Linux Memory Leaks
      needs: check-draft
-     runs-on: ubuntu-24.04
+     runs-on: namespace-profile-test
      env:
        GEN: ninja
 
@@ -194,7 +194,7 @@ jobs:
 
   smaller-binary:
     name: Smaller Binary
-    runs-on: ubuntu-24.04
+    runs-on: namespace-profile-test
     needs: linux-memory-leaks
     env:
       GEN: ninja
@@ -276,7 +276,7 @@ jobs:
 
   valgrind:
     name: Valgrind
-    runs-on: ubuntu-24.04
+    runs-on: namespace-profile-test
     needs: linux-memory-leaks
     env:
       CC: clang-20
@@ -347,7 +347,7 @@ jobs:
 
   storage-initialization:
      name: Storage Initialization Verification
-     runs-on: ubuntu-24.04
+     runs-on: namespace-profile-test
      needs: linux-memory-leaks
      env:
        CC: gcc
@@ -379,7 +379,7 @@ jobs:
 
   extension-updating:
     name: Extension updating test
-    runs-on: ubuntu-24.04
+    runs-on: namespace-profile-test
     needs: linux-memory-leaks
     env:
       CC: gcc
@@ -437,7 +437,7 @@ jobs:
 
   regression-test-memory-safety:
    name: Regression Tests between safe and unsafe builds
-   runs-on: ubuntu-24.04
+   runs-on: namespace-profile-test
    needs: linux-memory-leaks
    env:
      CC: gcc
@@ -517,7 +517,7 @@ jobs:
 
   vector-and-block-sizes:
     name: Tests non-default vector and block size
-    runs-on: ubuntu-24.04
+    runs-on: namespace-profile-test
     env:
       LSAN_OPTIONS: suppressions=${{ github.workspace }}/.sanitizer-leak-suppressions.txt
     needs: linux-memory-leaks
@@ -560,7 +560,7 @@ jobs:
 
   force-blocking-sink-source:
     name: Forcing async Sinks/Sources
-    runs-on: ubuntu-24.04
+    runs-on: namespace-profile-test
     needs: check-draft
     env:
       GEN: ninja
@@ -596,7 +596,7 @@ jobs:
     # disable in NightlyTests
     if: ${{ vars.ENABLE_WASM_EXPERIMENTAL == 'true' }}
     needs: check-draft
-    runs-on: ubuntu-22.04
+    runs-on: namespace-profile-test
     steps:
     - uses: emscripten-core/setup-emsdk@v16
       with:
@@ -673,7 +673,7 @@ jobs:
 
   hash-zero:
    name: Hash Zero
-   runs-on: ubuntu-24.04
+   runs-on: namespace-profile-test
    needs: linux-memory-leaks
    env:
      GEN: ninja
@@ -837,7 +837,7 @@ jobs:
 
   summary:
     name: BWC Test Summary
-    runs-on: ubuntu-24.04
+    runs-on: namespace-profile-test
     needs: bwc-test
     if: always()
     steps:

@@ -55,7 +55,7 @@ jobs:
   # This first step loads the various extension configs from the ~/.github/config directory storing them to drive the build jobs
   load-extension-configs:
     name: Load Extension Configs
-    runs-on: ubuntu-slim
+    runs-on: namespace-profile-test
     outputs:
       # NOTE: on PRs we exclude some archs to speed things up
       reduced_ci_mode: ${{ (github.event_name == 'pull_request' || !inputs.run_all) && 'enabled' || 'disabled' }}

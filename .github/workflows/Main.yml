@@ -1146,7 +1146,7 @@ jobs:
  summary:
     name: Summary
     if: ${{ always() }}
-    runs-on: ubuntu-slim
+    runs-on: namespace-profile-test
     needs:
       - prepare
       - linux-relassert
